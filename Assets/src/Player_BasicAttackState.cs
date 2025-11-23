@@ -8,6 +8,8 @@ public class Player_BasicAttackState : EntityState
     private int comboIndex = FirstComboIndex;
     private const string AnimIndexParamName = "basicAttackIndex";
     private float lastTimeAttacked;
+    private bool comboAttackQueued;
+    private int attackDir;
     public Player_BasicAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -15,12 +17,17 @@ public class Player_BasicAttackState : EntityState
     public override void Enter()
     {
         base.Enter();
+        comboAttackQueued = false;
+
+        attackDir = (player.moveInput.x == 0) ? player.faceDirection : (int)player.moveInput.x;
+
         attackVelocityDuration = player.attackVelocityDuration;
-        ApplyAttackVelocity();
+
         if (comboIndex > LastComboIndex || Time.time > lastTimeAttacked + player.comboResetTime)
         {
             comboIndex = FirstComboIndex;
         }
+        ApplyAttackVelocity();
         anim.SetInteger(AnimIndexParamName, comboIndex);
     }
 
@@ -34,9 +41,8 @@ public class Player_BasicAttackState : EntityState
         else
         {
             Debug.LogWarning("Unable Load Velocity in Player");
-
         }
-        player.SetVelocity(velocity.x * player.faceDirection, velocity.y);
+        player.SetVelocity(velocity.x * attackDir, velocity.y);
     }
 
     public override void Update()
@@ -44,11 +50,35 @@ public class Player_BasicAttackState : EntityState
         base.Update();
         attackVelocityDuration -= Time.deltaTime;
         HandleAttackVelocity();
+
+        if (input.Player.Attack.WasPressedThisFrame())
+        {
+            QueueNextAttack();
+        }
+
         if (triggerCalled)
         {
+            if (comboAttackQueued)
+            {
+                anim.SetBool(animBoolName, false);
+                player.EnterAttackStateWithDelay();
+            }
+            else
+            {
             stateMachine.ChangeState(player.idleState);
         }
     }
+    }
+
+    private void QueueNextAttack()
+    {
+        if (comboIndex < LastComboIndex)
+        {
+            comboAttackQueued = true;
+        }
+
+    }
+
     public override void Exit()
     {
         base.Exit();

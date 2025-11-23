@@ -27,9 +27,11 @@ public class StateMachine
 
     public void UpdateActiveState()
     {
-
-        currentState.Update();
+        // Process state change before updating the current state
+        // To avoid one more Update called in the previous state after changing.
         HandleStateChange();
+        currentState.Update();
+
 
         //if (updated)
         //{

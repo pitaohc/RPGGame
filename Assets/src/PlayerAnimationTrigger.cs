@@ -16,7 +16,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
     private void CurrentStateTrigger()
     {
-        Debug.Log("CurrentStateTrigger");
+        //Debug.Log("CurrentStateTrigger");
         player.CallAnimationTrigger();
     }
 }

@@ -21,7 +21,7 @@ public class Player_WallJumpState : EntityState
         base.Update();
         if (player.wallCheck)
         {
-            //Debug.Log("player.wallSlideState");
+            // TODO: here is a bug, when jump leave the wall, the player is also facing the wall.
             stateMachine.ChangeState(player.wallSlideState);
         }
 
