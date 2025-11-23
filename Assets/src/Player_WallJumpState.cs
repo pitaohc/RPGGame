@@ -2,8 +2,9 @@ using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class Player_WallJumpState : EntityState
+public class Player_WallJumpState : Player_AiredState
 {
+    private bool enableWallCheck;
     public Player_WallJumpState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -13,15 +14,15 @@ public class Player_WallJumpState : EntityState
     {
         base.Enter();
         Debug.Log("Enter Player_WallJumpState" + player.faceDirection);
+        enableWallCheck = false;
         player.SetVelocity(player.wallJumpForce.x * -player.faceDirection, player.wallJumpForce.y);
     }
 
     public override void Update()
     {
         base.Update();
-        if (player.wallCheck)
+        if (enableWallCheck && player.wallCheck)
         {
-            // TODO: here is a bug, when jump leave the wall, the player is also facing the wall.
             stateMachine.ChangeState(player.wallSlideState);
         }
 
@@ -30,6 +31,8 @@ public class Player_WallJumpState : EntityState
             //Debug.Log("player.fallState");
             stateMachine.ChangeState(player.fallState);
         }
+
+        enableWallCheck = true;
     }
 
     public override void Exit()
