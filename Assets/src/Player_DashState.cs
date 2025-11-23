@@ -16,7 +16,7 @@ public class Player_DashState : EntityState
         base.Enter();
         //Debug.Log("Enter Dash");
         stateTimer = player.dashDuration;
-        faceDirection = player.faceDirection;
+        faceDirection = (player.moveInput.x == 0) ? player.faceDirection : (int)player.moveInput.x;
         originalGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
     }
@@ -24,7 +24,7 @@ public class Player_DashState : EntityState
     public override void Update()
     {
         base.Update();
-        Debug.Log("duration" + stateTimer);
+        //Debug.Log("duration" + stateTimer);
         player.SetVelocity(player.dashSpeed * faceDirection, 0);
         cancelDashIfNeed();
 
