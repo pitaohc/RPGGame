@@ -19,16 +19,22 @@ public class Player_BasicAttackState : EntityState
         base.Enter();
         comboAttackQueued = false;
 
+        // Define attack direction according to input
         attackDir = (player.moveInput.x == 0) ? player.faceDirection : (int)player.moveInput.x;
 
         attackVelocityDuration = player.attackVelocityDuration;
 
+        ResetComboIndexIfNeed();
+        ApplyAttackVelocity();
+        anim.SetInteger(AnimIndexParamName, comboIndex);
+    }
+
+    private void ResetComboIndexIfNeed()
+    {
         if (comboIndex > LastComboIndex || Time.time > lastTimeAttacked + player.comboResetTime)
         {
             comboIndex = FirstComboIndex;
         }
-        ApplyAttackVelocity();
-        anim.SetInteger(AnimIndexParamName, comboIndex);
     }
 
     private void ApplyAttackVelocity()
@@ -58,16 +64,21 @@ public class Player_BasicAttackState : EntityState
 
         if (triggerCalled)
         {
-            if (comboAttackQueued)
-            {
-                anim.SetBool(animBoolName, false);
-                player.EnterAttackStateWithDelay();
-            }
-            else
-            {
-            stateMachine.ChangeState(player.idleState);
+            HandleStateExit();
         }
     }
+
+    private void HandleStateExit()
+    {
+        if (comboAttackQueued)
+        {
+            anim.SetBool(animBoolName, false);
+            player.EnterAttackStateWithDelay();
+        }
+        else
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
     }
 
     private void QueueNextAttack()
