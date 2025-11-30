@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 1.0f;
     [SerializeField] private float wallCheckDistance = 1.0f;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform primaryWallCheck;
+    [SerializeField] private Transform secondaryWallCheck;
     public bool groundCheck { get; private set; }
     public bool wallCheck { get; private set; }
 
@@ -115,7 +117,11 @@ public class Player : MonoBehaviour
     private void HandleCollisionDetection()
     {
         groundCheck = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsGround);
-        wallCheck = Physics2D.Raycast(transform.position, faceDirection * Vector2.right, wallCheckDistance, whatIsGround);
+        wallCheck =
+            Physics2D.Raycast(primaryWallCheck.position, faceDirection * Vector2.right, wallCheckDistance,
+                whatIsGround) &&
+            Physics2D.Raycast(secondaryWallCheck.position, faceDirection * Vector2.right, wallCheckDistance,
+                whatIsGround);
     }
 
     private void OnDrawGizmos()
@@ -124,8 +130,11 @@ public class Player : MonoBehaviour
             transform.position,
             transform.position + groundCheckDistance * Vector3.down);
         Gizmos.DrawLine(
-            transform.position,
-            transform.position + faceDirection * wallCheckDistance * Vector3.right);
+            primaryWallCheck.position,
+            primaryWallCheck.position + faceDirection * wallCheckDistance * Vector3.right);
+        Gizmos.DrawLine(
+            secondaryWallCheck.position,
+            secondaryWallCheck.position + faceDirection * wallCheckDistance * Vector3.right);
 
     }
 

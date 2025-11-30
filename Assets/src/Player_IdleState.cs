@@ -15,9 +15,16 @@ public class Player_IdleState : Player_GroundedState
     public override void Update()
     {
         base.Update();
+        if ((int)player.moveInput.x == player.faceDirection && player.wallCheck)
+        {
+            return;
+        }
+
         if (player.moveInput.x != 0 &&
             !input.Player.Jump.WasPerformedThisFrame())
+        {
             stateMachine.ChangeState(player.moveState);
+        }
 
         //if (player.input.Player.Jump.WasPressedThisFrame())
         //{
