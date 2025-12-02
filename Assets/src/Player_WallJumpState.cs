@@ -13,7 +13,7 @@ public class Player_WallJumpState : Player_AiredState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter Player_WallJumpState" + player.faceDirection);
+        //Debug.Log("Enter Player_WallJumpState" + player.faceDirection);
         enableWallCheck = false;
         player.SetVelocity(player.wallJumpForce.x * -player.faceDirection, player.wallJumpForce.y);
     }
