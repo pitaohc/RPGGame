@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimationTrigger : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called once before the first execution of Move after the MonoBehaviour is created
     private Player player;
     void Start()
     {

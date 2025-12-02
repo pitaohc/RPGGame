@@ -6,7 +6,7 @@ public class Player_DashState : EntityState
     private int faceDirection;
 
     private float originalGravityScale;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called once before the first execution of Move after the MonoBehaviour is created
     public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }

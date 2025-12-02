@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player_FallState : Player_AiredState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called once before the first execution of Move after the MonoBehaviour is created
     public Player_FallState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
