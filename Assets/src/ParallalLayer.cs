@@ -29,7 +29,7 @@ public class ParallalLayer
         }
     }
 
-    public void CalculateImageWidth()
+    public void InitializeLayers()
     {
         imageFullWidth = layerTransform.GetComponent<SpriteRenderer>().bounds.size.x;
         imageHalfWidth = imageFullWidth / 2f;

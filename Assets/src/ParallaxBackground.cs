@@ -42,7 +42,7 @@ public class ParallaxBackground : MonoBehaviour
     {
         foreach (var layer in parallaxLayers)
         {
-            layer.CalculateImageWidth();
+            layer.InitializeLayers();
         }
     }
 }
