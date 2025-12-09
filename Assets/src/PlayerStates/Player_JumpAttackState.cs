@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Player_JumpAttackState : EntityState
+public class Player_JumpAttackState : PlayerState
 {
     private bool isGrounded; // make sure the trigger is only called once
     public Player_JumpAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)

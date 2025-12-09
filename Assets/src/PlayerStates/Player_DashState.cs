@@ -1,7 +1,7 @@
 using Mono.Cecil.Cil;
 using UnityEngine;
 
-public class Player_DashState : EntityState
+public class Player_DashState : PlayerState
 {
     private int faceDirection;
 
