@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class EnemyState : MonoBehaviour
+public class EnemyState : EntityState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected Enemy enemy;
+    public EnemyState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
-        
+        this.enemy = enemy;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
