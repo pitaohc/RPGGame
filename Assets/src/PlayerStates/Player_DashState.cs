@@ -40,13 +40,13 @@ public class Player_DashState : PlayerState
 
     private void cancelDashIfNeed()
     {
-        if (player.wallCheck)
+        if (player.wallDetected)
         {
-            stateMachine.ChangeState((player.groundCheck) ? player.idleState : player.wallSlideState);
+            stateMachine.ChangeState((player.groundDetected) ? player.idleState : player.wallSlideState);
         }
         if (stateTimer < 0)
         {
-            stateMachine.ChangeState((player.groundCheck) ? player.idleState : player.fallState);
+            stateMachine.ChangeState((player.groundDetected) ? player.idleState : player.fallState);
         }
     }
 }

@@ -22,7 +22,7 @@ public class Player_FallState : Player_AiredState
         //    stateMachine.ChangeState(nextState);
         //    Debug.Log("change to grounded");
         //}
-        if (player.groundCheck)
+        if (player.groundDetected)
         {
             EntityState nextState =
                 rb.linearVelocityX == 0 ?
@@ -30,7 +30,7 @@ public class Player_FallState : Player_AiredState
                 player.moveState;
             stateMachine.ChangeState(nextState);
         }
-        if (player.wallCheck)
+        if (player.wallDetected)
         {
             stateMachine.ChangeState(player.wallSlideState);
         }

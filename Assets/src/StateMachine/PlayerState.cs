@@ -48,7 +48,7 @@ public abstract class PlayerState : EntityState
             return false;
         }
 
-        if (player.wallCheck)
+        if (player.wallDetected)
         {
             return false;
         }

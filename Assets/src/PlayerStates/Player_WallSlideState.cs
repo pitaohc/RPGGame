@@ -14,7 +14,7 @@ public class Player_WallSlideState : PlayerState
         // 玩家移动->player.wallCheck为false，此时角色与墙已经有间隔
         // 会出现有贴墙动画不贴墙的效果
 
-        if (!player.wallCheck)
+        if (!player.wallDetected)
         {
             //player.Flip();
             stateMachine.ChangeState(player.fallState);
@@ -24,7 +24,7 @@ public class Player_WallSlideState : PlayerState
             //player.Flip();
             stateMachine.ChangeState(player.wallJumpState);
         }
-        if (player.groundCheck)
+        if (player.groundDetected)
         {
             stateMachine.ChangeState(player.idleState);
         }
