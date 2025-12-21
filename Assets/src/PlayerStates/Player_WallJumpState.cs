@@ -21,7 +21,7 @@ public class Player_WallJumpState : Player_AiredState
     public override void Update()
     {
         base.Update();
-        if (enableWallCheck && player.wallCheck)
+        if (enableWallCheck && player.wallDetected)
         {
             stateMachine.ChangeState(player.wallSlideState);
         }

@@ -16,14 +16,14 @@ public class Player_JumpAttackState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.groundCheck && !isGrounded)
+        if (player.groundDetected && !isGrounded)
         {
             anim.SetTrigger("jumpAttackTrigger");
             player.SetVelocity(0, rb.linearVelocityY);
             isGrounded = true;
         }
 
-        if (player.groundCheck && triggerCalled)
+        if (player.groundDetected && triggerCalled)
         {
             stateMachine.ChangeState(player.idleState);
         }
