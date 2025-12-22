@@ -10,4 +10,13 @@ public class EnemyState : EntityState
         rb = enemy.rb;
         anim = enemy.anim;
     }
+
+    public override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            stateMachine.ChangeState(enemy.attackState);
+        }
+    }
 }

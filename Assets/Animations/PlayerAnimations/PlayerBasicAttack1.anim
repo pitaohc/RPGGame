@@ -97,7 +97,7 @@ AnimationClip:
   - time: 0.53333336
     functionName: CurrentStateTrigger
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 99116afaa9cc631489d25766633a9c5b, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
