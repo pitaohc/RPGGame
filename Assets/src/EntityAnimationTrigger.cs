@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class PlayerAnimationTrigger : MonoBehaviour
+public class EntityAnimationTrigger : MonoBehaviour
 {
     // Start is called once before the first execution of Move after the MonoBehaviour is created
-    private Player player;
+    private Entity entity;
     void Start()
     {
     }
 
     void Awake()
     {
-        player = GetComponentInParent<Player>();
+        entity = GetComponentInParent<Entity>();
 
     }
 
     private void CurrentStateTrigger()
     {
         //Debug.Log("CurrentStateTrigger");
-        player.CallAnimationTrigger();
+        entity.CallAnimationTrigger();
     }
 }
