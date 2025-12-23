@@ -17,6 +17,9 @@ public class Enemy : Entity
     public LayerMask whatIsPlayer;
     public float playerCheckDistance = 10.0f;
     public Transform playerCheck;
+    [Header("Battle Details")]
+    public float battleMoveVelocity = 3.0f;
+    public float attackDistance = 2.0f;
 
     protected override void OnDrawGizmos()
     {
@@ -24,12 +27,15 @@ public class Enemy : Entity
         Gizmos.DrawLine(
             playerCheck.position,
             playerCheck.position + faceDirection * playerCheckDistance * Vector3.right);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(playerCheck.position,
+            playerCheck.position + faceDirection * attackDistance * Vector3.right);
 
     }
 
     public RaycastHit2D PlayerDetection()
     {
-        RaycastHit2D result = Physics2D.Raycast(playerCheck.position, Vector2.right, playerCheckDistance, whatIsPlayer | whatIsGround);
+        RaycastHit2D result = Physics2D.Raycast(playerCheck.position, faceDirection * Vector2.right, playerCheckDistance, whatIsPlayer | whatIsGround);
         if (result.collider == null || result.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             return default;
