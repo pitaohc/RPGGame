@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_MoveState : EnemyState
+public class Enemy_MoveState : Enemy_GroundState
 {
     private static int moveAnimSpeedMultiplierHash = Animator.StringToHash("moveAnimSpeedMultiplier");
     public Enemy_MoveState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)

@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
     [Header("Collision Detection")]
     [SerializeField] private float groundCheckDistance = 1.0f;
     [SerializeField] private float wallCheckDistance = 1.0f;
-    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] protected LayerMask whatIsGround;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform primaryWallCheck;
     [SerializeField] private Transform secondaryWallCheck;
@@ -85,7 +85,7 @@ public class Entity : MonoBehaviour
         wallDetected = wallDetectedResult;
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(
             groundCheck.position,

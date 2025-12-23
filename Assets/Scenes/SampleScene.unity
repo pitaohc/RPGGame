@@ -279,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 156129281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.83117, y: 1.9614198, z: -10}
+  m_LocalPosition: {x: -9.29117, y: 1.7214198, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 274070543}
   - component: {fileID: 274070545}
   - component: {fileID: 274070546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ Transform:
   m_GameObject: {fileID: 274070542}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.67, y: -3.34, z: 0}
+  m_LocalPosition: {x: -12.13, y: -3.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304930627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.83117, y: 1.9614198, z: -10}
+  m_LocalPosition: {x: -9.29117, y: 1.7214198, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -724,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 601581637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PrimaryWallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670379534}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SecondaryWallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4141,7 +4141,7 @@ GameObject:
   - component: {fileID: 817283599}
   - component: {fileID: 817283598}
   - component: {fileID: 817283601}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4221,7 +4221,7 @@ Transform:
   m_GameObject: {fileID: 817283597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.441, y: -3.71, z: 0}
+  m_LocalPosition: {x: -4.4, y: -2.59, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4252,6 +4252,11 @@ MonoBehaviour:
   idleTime: 2
   moveSpeed: 1.4
   moveAnimSpeedMultiplier: 1
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerCheckDistance: 10
+  playerCheck: {fileID: 817283600}
 --- !u!1 &895282836
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,7 +4269,7 @@ GameObject:
   - component: {fileID: 895282838}
   - component: {fileID: 895282839}
   - component: {fileID: 895282840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4563,7 +4568,7 @@ GameObject:
   - component: {fileID: 1879876198}
   - component: {fileID: 1879876199}
   - component: {fileID: 1879876200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
