@@ -6,7 +6,7 @@ public class Player_BasicAttackState : PlayerState
     private const int LastComboIndex = 3;
     private float attackVelocityDuration;
     private int comboIndex = FirstComboIndex;
-    private const string AnimIndexParamName = "basicAttackIndex";
+    private static int animIdBasicAttackIndex = Animator.StringToHash("basicAttackIndex");
     private float lastTimeAttacked;
     private bool comboAttackQueued;
     private int attackDir;
@@ -26,7 +26,6 @@ public class Player_BasicAttackState : PlayerState
 
         ResetComboIndexIfNeed();
         ApplyAttackVelocity();
-        anim.SetInteger(AnimIndexParamName, comboIndex);
     }
 
     private void ResetComboIndexIfNeed()
@@ -105,4 +104,9 @@ public class Player_BasicAttackState : PlayerState
         }
     }
 
+    public override void UpdateAnimationParameters()
+    {
+        base.UpdateAnimationParameters();
+        anim.SetInteger(animIdBasicAttackIndex, comboIndex);
+    }
 }

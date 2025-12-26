@@ -23,12 +23,13 @@ public abstract class EntityState
     {
         //Debug.Log("Enter: " + this.GetType().Name + " " + animBoolName);
         anim.SetBool(animBoolName, true);
-        this.triggerCalled = false;
+        triggerCalled = false;
     }
 
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
+        UpdateAnimationParameters();
     }
 
     public virtual void Exit()
@@ -38,8 +39,12 @@ public abstract class EntityState
     }
 
 
-    public void CallAnimationTrigger()
+    public void AnimationTrigger()
     {
         triggerCalled = true;
+    }
+
+    public virtual void UpdateAnimationParameters()
+    {
     }
 }

@@ -5,9 +5,8 @@ using UnityEngine;
 public abstract class PlayerState : EntityState
 {
     protected Player player;
-
     protected PlayerInputSet input;
-
+    private static int animIdYVelocity = Animator.StringToHash("yVelocity");
 
     public PlayerState(Player player, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
@@ -17,31 +16,18 @@ public abstract class PlayerState : EntityState
         this.input = player.input;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
 
     public override void Update()
     {
         base.Update();
-        anim.SetFloat("yVelocity", player.rb.linearVelocityY);
 
-        if (input.Player.Dash.WasPerformedThisFrame() && canDash())
+        if (input.Player.Dash.WasPerformedThisFrame() && CanDash())
         {
             stateMachine.ChangeState(player.dashState);
         }
-
-
-        //Debug.Log("I run update of " + animBoolName);
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    protected bool canDash()
+    protected bool CanDash()
     {
         if (player.stateMachine.currentState == player.dashState)
         {
@@ -56,4 +42,9 @@ public abstract class PlayerState : EntityState
         return true;
     }
 
+    public override void UpdateAnimationParameters()
+    {
+        base.UpdateAnimationParameters();
+        anim.SetFloat(animIdYVelocity, player.rb.linearVelocityY);
+    }
 }
