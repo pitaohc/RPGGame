@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy_BattleState : EnemyState
 {
     private Transform transform_player;
-    private static int battleAnimSpeedMultiplier = Animator.StringToHash("battleAnimSpeedMultiplier");
+    private static int animIdBattleAnimSpeedMultiplier = Animator.StringToHash("battleAnimSpeedMultiplier");
     private float lastFindPlayerTime = 0.0f; // TODO private
 
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
@@ -39,7 +39,7 @@ public class Enemy_BattleState : EnemyState
             //Debug.Log("change state to move");
             stateMachine.ChangeState(enemy.moveState);
         }
-        else if (WithAttackRange())
+        else if (WithAttackRange() && DirectionToPlayer() > 0)
         {
             //Debug.Log("change state to attack");
             stateMachine.ChangeState(enemy.attackState);
@@ -49,7 +49,6 @@ public class Enemy_BattleState : EnemyState
             //Debug.Log("move to player");
             enemy.SetVelocity(enemy.battleMoveVelocity * DirectionToPlayer(), rb.linearVelocityY);
         }
-        anim.SetFloat(battleAnimSpeedMultiplier, enemy.GetBattleAnimSpeedMultiplier());
     }
     private void UpdateBattleTimer() => lastFindPlayerTime = Time.time;
     public bool BattleTimeIsOver() =>
@@ -76,5 +75,12 @@ public class Enemy_BattleState : EnemyState
 
         return Mathf.Abs(enemy.transform.position.x - transform_player.position.x);
         //return Vector2.Distance(enemy.transform.position, transform_player.position);
+    }
+
+    public override void UpdateAnimationParameters()
+    {
+        base.UpdateAnimationParameters();
+        anim.SetFloat(animIdBattleAnimSpeedMultiplier, enemy.GetBattleAnimSpeedMultiplier());
+
     }
 }

@@ -426,7 +426,7 @@ MonoBehaviour:
   attackVelocityDuration: 0.1
   comboResetTime: 1
   moveSpeed: 8
-  jumpForce: 12
+  jumpForce: 15
   wallJumpForce: {x: 6, y: 12}
   inAirMoveMultiplier: 0.8
   inWallSlideMultiplier: 0.5

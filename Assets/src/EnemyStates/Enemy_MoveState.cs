@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy_MoveState : Enemy_GroundState
 {
-    private static int moveAnimSpeedMultiplierHash = Animator.StringToHash("moveAnimSpeedMultiplier");
+    private static int animIdmoveAnimSpeedMultiplier = Animator.StringToHash("moveAnimSpeedMultiplier");
     public Enemy_MoveState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
@@ -20,10 +20,15 @@ public class Enemy_MoveState : Enemy_GroundState
     {
         base.Update();
         enemy.SetVelocity(enemy.moveSpeed * enemy.faceDirection, rb.linearVelocityY);
-        anim.SetFloat(moveAnimSpeedMultiplierHash, enemy.moveAnimSpeedMultiplier);
         if (enemy.wallDetected || !enemy.groundDetected)
         {
             stateMachine.ChangeState(enemy.idleState);
         }
+    }
+
+    public override void UpdateAnimationParameters()
+    {
+        base.UpdateAnimationParameters();
+        anim.SetFloat(animIdmoveAnimSpeedMultiplier, enemy.moveAnimSpeedMultiplier);
     }
 }

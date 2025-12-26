@@ -4,6 +4,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class Player_JumpAttackState : PlayerState
 {
     private bool isGrounded; // make sure the trigger is only called once
+    private static int animIdjumpAttackTrigger = Animator.StringToHash("jumpAttackTrigger");
     public Player_JumpAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -18,7 +19,7 @@ public class Player_JumpAttackState : PlayerState
         base.Update();
         if (player.groundDetected && !isGrounded)
         {
-            anim.SetTrigger("jumpAttackTrigger");
+            anim.SetTrigger(animIdjumpAttackTrigger);
             player.SetVelocity(0, rb.linearVelocityY);
             isGrounded = true;
         }

@@ -102,9 +102,9 @@ public class Entity : MonoBehaviour
 
     }
 
-    public void CallAnimationTrigger()
+    public void CurrentStateAnimationTrigger()
     {
-        stateMachine.currentState.CallAnimationTrigger();
+        stateMachine.currentState.AnimationTrigger();
     }
 
 
