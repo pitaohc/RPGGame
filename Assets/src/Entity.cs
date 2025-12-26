@@ -51,12 +51,12 @@ public class Entity : MonoBehaviour
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         rb.linearVelocity = new Vector2(xVelocity, yVelocity);
-        HandleFlip();
+        HandleFlip(xVelocity);
     }
 
-    private void HandleFlip()
+    public void HandleFlip(float xVelocity)
     {
-        if (faceDirection * rb.linearVelocityX < 0)
+        if (faceDirection * xVelocity < 0)
         {
             Flip();
         }
