@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : Entity
 {
@@ -18,18 +19,25 @@ public class Enemy : Entity
     public float playerCheckDistance = 10.0f;
     public Transform playerCheck;
     [Header("Battle Details")]
+    public float battleTimeDuration = 5.0f;
     public float battleMoveVelocity = 3.0f;
     public float attackDistance = 2.0f;
+    public float minRetreatDistance = 1.0f;
+    public Vector2 retreatVelocity;
 
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
+        Gizmos.color = Color.yellow;
         Gizmos.DrawLine(
             playerCheck.position,
             playerCheck.position + faceDirection * playerCheckDistance * Vector3.right);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(playerCheck.position,
             playerCheck.position + faceDirection * attackDistance * Vector3.right);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(playerCheck.position,
+            playerCheck.position + faceDirection * minRetreatDistance * Vector3.right);
 
     }
 
@@ -40,7 +48,11 @@ public class Enemy : Entity
         {
             return default;
         }
-
         return result;
+    }
+
+    public float GetBattleAnimSpeedMultiplier()
+    {
+        return battleMoveVelocity / moveSpeed;
     }
 }
