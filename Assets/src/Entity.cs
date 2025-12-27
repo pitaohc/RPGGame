@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -100,6 +101,7 @@ public class Entity : MonoBehaviour
                 secondaryWallCheck.position + faceDirection * wallCheckDistance * Vector3.right);
         }
 
+        //Handles.Label(primaryWallCheck.position, "Hello World");
     }
 
     public void CurrentStateAnimationTrigger()
