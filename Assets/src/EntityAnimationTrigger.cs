@@ -4,6 +4,7 @@ public class EntityAnimationTrigger : MonoBehaviour
 {
     // Start is called once before the first execution of Move after the MonoBehaviour is created
     private Entity entity;
+    private EntityCombat combat;
     void Start()
     {
     }
@@ -11,6 +12,7 @@ public class EntityAnimationTrigger : MonoBehaviour
     void Awake()
     {
         entity = GetComponentInParent<Entity>();
+        combat = GetComponentInParent<EntityCombat>();
 
     }
 
@@ -18,5 +20,10 @@ public class EntityAnimationTrigger : MonoBehaviour
     {
         //Debug.Log("CurrentStateTrigger");
         entity.CurrentStateAnimationTrigger();
+    }
+
+    private void AttackTrigger()
+    {
+        combat.PerformAttack();
     }
 }
