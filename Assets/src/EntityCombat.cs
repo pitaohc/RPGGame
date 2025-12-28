@@ -17,7 +17,7 @@ public class EntityCombat : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(targetCheck.position, targetCheckRadius);
+        Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
     }
 
     public void PerformAttack()
