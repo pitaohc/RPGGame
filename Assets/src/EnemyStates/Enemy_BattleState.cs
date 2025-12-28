@@ -13,12 +13,9 @@ public class Enemy_BattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        if (transform_player == null)
-        {
-            transform_player = enemy.PlayerDetection().transform;
-            //Debug.Log("set transform" + transform_player.ToString());
-        }
-
+        UpdateBattleTimer();
+        transform_player ??= enemy.GetPlayerReference();
+        //Debug.Log("Enter Battle State " + transform_player.name);
         if (ShouldRetreat())
         {
             rb.linearVelocity = new Vector2(-enemy.retreatVelocity.x * DirectionToPlayer(), enemy.retreatVelocity.y);

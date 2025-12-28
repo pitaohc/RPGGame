@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EntityCombat : MonoBehaviour
 {
+    public float damage = 10;
     [Header("Target Detection")]
     [SerializeField]
     private float targetCheckRadius = 1.0f;
@@ -28,7 +29,7 @@ public class EntityCombat : MonoBehaviour
             EntityHealth targetHealth = target.GetComponent<EntityHealth>();
             if (targetHealth)
             {
-                targetHealth.TakeDamage(10.0f);
+                targetHealth.TakeDamage(damage, transform);
             }
         }
     }
