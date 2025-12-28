@@ -36,7 +36,7 @@ public class Enemy_BattleState : EnemyState
             //Debug.Log("change state to move");
             stateMachine.ChangeState(enemy.moveState);
         }
-        else if (WithAttackRange() && DirectionToPlayer() > 0)
+        else if (WithAttackRange() && DirectionToPlayer() == enemy.faceDirection)
         {
             //Debug.Log("change state to attack");
             stateMachine.ChangeState(enemy.attackState);
