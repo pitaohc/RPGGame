@@ -5,14 +5,13 @@ public class EntityHealth : MonoBehaviour
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected bool isDead;
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, Transform damageDealer)
     {
         if (isDead)
         {
             return;
         }
         ReduceHealth(damage);
-        Debug.Log("Health: " + maxHealth);
     }
 
     protected void ReduceHealth(float damage)

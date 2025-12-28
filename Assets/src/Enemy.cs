@@ -8,6 +8,7 @@ public class Enemy : Entity
     public Enemy_MoveState moveState { get; protected set; }
     public Enemy_AttackState attackState { get; protected set; }
     public Enemy_BattleState battleState { get; protected set; }
+    public Transform player { get; private set; }
 
     [Header("Movement Details")]
     public float idleTime = 1.0f;
@@ -48,11 +49,28 @@ public class Enemy : Entity
         {
             return default;
         }
+
+        player = result.transform;
         return result;
     }
 
     public float GetBattleAnimSpeedMultiplier()
     {
         return battleMoveVelocity / moveSpeed;
+    }
+
+    public void TryEnterBattleState(Transform player)
+    {
+        if (stateMachine.currentState == battleState || stateMachine.currentState == attackState)
+        {
+            return;
+        }
+        this.player = player;
+        stateMachine.ChangeState(battleState);
+    }
+
+    public Transform GetPlayerReference()
+    {
+        return player;
     }
 }
