@@ -550,6 +550,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   isDead: 0
+  knockbackDuration: 0.2
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyDamageThreshold: 0.3
+  heavyKnockbackDuration: 0.5
+  heavyKnockbackPower: {x: 7, y: 7}
 --- !u!114 &274070549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,6 +4665,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   isDead: 0
+  knockbackDuration: 0.2
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyDamageThreshold: 0.3
+  heavyKnockbackDuration: 0.5
+  heavyKnockbackPower: {x: 7, y: 7}
 --- !u!114 &817283604
 MonoBehaviour:
   m_ObjectHideFlags: 0
