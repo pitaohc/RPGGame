@@ -6,7 +6,7 @@ public class StateMachine
     public EntityState currentState { get; private set; }
     public EntityState nextState { get; private set; }
     public bool changed { get; private set; } = false;
-
+    private bool canChangeState = true;
 
 
     public void Initialize(EntityState startState)
@@ -18,6 +18,11 @@ public class StateMachine
 
     public void ChangeState(EntityState newState)
     {
+        if (!canChangeState)
+        {
+            Debug.LogWarning("try to switch state when disable");
+            return;
+        }
         //currentState.Exit();
         //currentState = newState;
         //currentState.Enter();
@@ -58,4 +63,8 @@ public class StateMachine
         currentState = nextState;
     }
 
+    public void Disable()
+    {
+        canChangeState = false;
+    }
 }

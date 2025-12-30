@@ -135,4 +135,9 @@ public class Entity : MonoBehaviour
 
         knockbackCo = StartCoroutine(KnockbackCo(knockback, duration));
     }
+
+    public virtual void EntityDeath()
+    {
+
+    }
 }
