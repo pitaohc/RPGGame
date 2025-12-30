@@ -13,7 +13,7 @@ public class EnemyHealth : EntityHealth
 
     public override void TakeDamage(float damage, Transform damageDealer)
     {
-        if (damageDealer.GetComponent<Player>() != null)
+        if (!isDead && damageDealer.GetComponent<Player>() != null)
         {
             enemy.TryEnterBattleState(damageDealer);
         }

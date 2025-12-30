@@ -8,6 +8,8 @@ public class Enemy : Entity
     public Enemy_MoveState moveState { get; protected set; }
     public Enemy_AttackState attackState { get; protected set; }
     public Enemy_BattleState battleState { get; protected set; }
+    public Enemy_DeadState deadState { get; protected set; }
+
     public Transform player { get; private set; }
 
     [Header("Movement Details")]
@@ -25,6 +27,9 @@ public class Enemy : Entity
     public float attackDistance = 2.0f;
     public float minRetreatDistance = 1.0f;
     public Vector2 retreatVelocity;
+    [Header("Death Details")]
+    public float deathGravityScale = 1.0f;
+    public float deathLinearVelocityY = 0.0f;
 
     protected override void OnDrawGizmos()
     {
@@ -72,5 +77,11 @@ public class Enemy : Entity
     public Transform GetPlayerReference()
     {
         return player;
+    }
+
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        stateMachine.ChangeState(deadState);
     }
 }
