@@ -18,7 +18,7 @@ public class Player_AiredState : PlayerState
 
         if (input.Player.Attack.WasPressedThisFrame())
         {
-            stateMachine.ChangeState(player.JumpAttackState);
+            stateMachine.ChangeState(player.jumpAttackState);
         }
 
     }

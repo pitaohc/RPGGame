@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Player : Entity
 {
+    // Events
+    public static event Action OnPlayerDeath;
+    // Input
     public PlayerInputSet input { get; private set; }
+    // States
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
     public Player_JumpState jumpState { get; private set; }
@@ -12,7 +17,8 @@ public class Player : Entity
     public Player_WallJumpState wallJumpState { get; private set; }
     public Player_DashState dashState { get; private set; }
     public Player_BasicAttackState basicAttackState { get; private set; }
-    public Player_JumpAttackState JumpAttackState { get; private set; }
+    public Player_JumpAttackState jumpAttackState { get; private set; }
+    public Player_DeadState deadState { get; private set; }
 
     [Header("Attack Details")]
     public Vector2[] attackVelocity;
@@ -31,14 +37,9 @@ public class Player : Entity
     public float inWallSlideMultiplier = 1.0f; // should be [0,1]
     public Vector2 moveInput { get; private set; }
 
-
-
     [Header("Dash Details")]
     public float dashDuration = 0.2f;
     public float dashSpeed = 20f;
-
-
-
 
     protected override void Awake()
     {
@@ -54,7 +55,8 @@ public class Player : Entity
         wallJumpState = new Player_WallJumpState(this, stateMachine, "jump_fall");
         dashState = new Player_DashState(this, stateMachine, "dash");
         basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
-        JumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
+        jumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
+        deadState = new Player_DeadState(this, stateMachine, "dead");
 
     }
 
@@ -93,4 +95,10 @@ public class Player : Entity
         stateMachine.Initialize(idleState);
     }
 
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        stateMachine.ChangeState(deadState);
+        OnPlayerDeath?.Invoke();
+    }
 }
