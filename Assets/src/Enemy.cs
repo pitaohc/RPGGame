@@ -31,6 +31,18 @@ public class Enemy : Entity
     public float deathGravityScale = 1.0f;
     public float deathLinearVelocityY = 0.0f;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Player.OnPlayerDeath += OnPlayerDeadHandle;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Player.OnPlayerDeath -= OnPlayerDeadHandle;
+    }
+
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
@@ -83,5 +95,10 @@ public class Enemy : Entity
     {
         base.EntityDeath();
         stateMachine.ChangeState(deadState);
+    }
+
+    private void OnPlayerDeadHandle()
+    {
+        stateMachine.ChangeState(idleState);
     }
 }
