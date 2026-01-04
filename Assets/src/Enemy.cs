@@ -9,6 +9,7 @@ public class Enemy : Entity
     public Enemy_AttackState attackState { get; protected set; }
     public Enemy_BattleState battleState { get; protected set; }
     public Enemy_DeadState deadState { get; protected set; }
+    public Enemy_StunnedState stunnedState { get; protected set; }
 
     public Transform player { get; private set; }
 
@@ -30,6 +31,12 @@ public class Enemy : Entity
     [Header("Death Details")]
     public float deathGravityScale = 1.0f;
     public float deathLinearVelocityY = 0.0f;
+    [Header("Stunned State Details")]
+    public float stunnedDuration = 1;
+    public Vector2 stunnedVelocity = new(7.0f, 7.0f);
+    [SerializeField] protected bool canBeStunned = false;
+
+    public void EnableCounterWindow(bool enable) => canBeStunned = enable;
 
     protected override void OnEnable()
     {
