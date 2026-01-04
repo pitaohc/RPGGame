@@ -9,7 +9,7 @@ public class EntityAnimationTrigger : MonoBehaviour
     {
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         entity = GetComponentInParent<Entity>();
         combat = GetComponentInParent<EntityCombat>();

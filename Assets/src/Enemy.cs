@@ -34,7 +34,9 @@ public class Enemy : Entity
     [Header("Stunned State Details")]
     public float stunnedDuration = 1;
     public Vector2 stunnedVelocity = new(7.0f, 7.0f);
-    protected bool canBeStunned = false;
+    [SerializeField] protected bool canBeStunned = false;
+
+    public void EnableCounterWindow(bool enable) => canBeStunned = enable;
 
     protected override void OnEnable()
     {

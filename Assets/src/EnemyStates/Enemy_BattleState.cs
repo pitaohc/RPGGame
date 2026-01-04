@@ -4,7 +4,7 @@ public class Enemy_BattleState : EnemyState
 {
     private Transform transform_player;
     private static int animIdBattleAnimSpeedMultiplier = Animator.StringToHash("battleAnimSpeedMultiplier");
-    private float lastFindPlayerTime = 0.0f; // TODO private
+    private float lastFindPlayerTime = 0.0f;
 
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {

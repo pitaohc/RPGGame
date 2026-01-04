@@ -1,16 +1,26 @@
 using UnityEngine;
 
-public class EnemyAnimationTrigger : MonoBehaviour
+public class EnemyAnimationTrigger : EntityAnimationTrigger
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Enemy enemy;
+    private EnemyVFX enemyVfx;
+    protected override void Awake()
     {
-        
+        base.Awake();
+        enemy = GetComponentInParent<Enemy>();
+        enemyVfx = GetComponentInParent<EnemyVFX>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void EnableCounterWindow()
     {
-        
+        enemy.EnableCounterWindow(true);
+        enemyVfx.EnableAttackAlert(true);
+    }
+
+    private void DisableCounterWindow()
+    {
+        enemy.EnableCounterWindow(false);
+        enemyVfx.EnableAttackAlert(false);
+
     }
 }
