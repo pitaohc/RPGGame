@@ -11,7 +11,7 @@ public class Enemy_StunnedState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        rb.linearVelocity = enemy.stunnedVelocity; // TODO 考虑朝向
+        rb.linearVelocity = enemy.stunnedVelocity * new Vector2(-enemy.faceDirection, 1); // TODO 考虑朝向
         stateTimer = enemy.stunnedDuration;
         enemy.EnableCounterWindow(false);
         enemyVfx.EnableAttackAlert(false);
