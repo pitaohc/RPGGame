@@ -21,7 +21,7 @@ public class Player_IdleState : Player_GroundedState
         }
 
         if (player.moveInput.x != 0 &&
-            !input.Player.Jump.WasPerformedThisFrame())
+            !input.Player.Jump.WasPressedThisFrame())
         {
             stateMachine.ChangeState(player.moveState);
         }

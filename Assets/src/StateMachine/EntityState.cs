@@ -6,6 +6,7 @@ public abstract class EntityState
 {
     protected StateMachine stateMachine;
     public string animBoolName;
+    protected int animIdNameHash;
 
     protected Animator anim;
     protected Rigidbody2D rb;
@@ -13,16 +14,17 @@ public abstract class EntityState
     protected float stateTimer;
     protected bool triggerCalled;
 
-    public EntityState(StateMachine stateMachine, string animBoolName)
+    protected EntityState(StateMachine stateMachine, string animBoolName)
     {
         this.stateMachine = stateMachine;
         this.animBoolName = animBoolName;
+        this.animIdNameHash = Animator.StringToHash(animBoolName);
     }
 
     public virtual void Enter()
     {
         //Debug.Log("Enter: " + this.GetType().Name + " " + animBoolName);
-        anim.SetBool(animBoolName, true);
+        anim.SetBool(animIdNameHash, true);
         triggerCalled = false;
     }
 
@@ -35,7 +37,7 @@ public abstract class EntityState
     public virtual void Exit()
     {
         //Debug.Log("Exit: " + this.GetType().Name + " " + animBoolName);
-        anim.SetBool(animBoolName, false);
+        anim.SetBool(animIdNameHash, false);
     }
 
 

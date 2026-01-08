@@ -19,7 +19,7 @@ public class Player_WallSlideState : PlayerState
             //player.Flip();
             stateMachine.ChangeState(player.fallState);
         }
-        if (input.Player.Jump.WasPerformedThisFrame())
+        if (input.Player.Jump.WasPressedThisFrame())
         {
             //player.Flip();
             stateMachine.ChangeState(player.wallJumpState);
