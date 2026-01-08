@@ -609,11 +609,11 @@ GameObject:
   m_Component:
   - component: {fileID: 274070544}
   - component: {fileID: 274070543}
-  - component: {fileID: 274070547}
   - component: {fileID: 274070548}
   - component: {fileID: 274070545}
   - component: {fileID: 274070546}
   - component: {fileID: 274070549}
+  - component: {fileID: 274070550}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -738,24 +738,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.32}
   m_Size: {x: 1.1630287, y: 1.9}
   m_Direction: 0
---- !u!114 &274070547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274070542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2239998396c49ce48b94cb1b3bb6e676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 35
-  targetCheckRadius: 1
-  whatIsTarget:
-    serializedVersion: 2
-    m_Bits: 256
-  targetCheck: {fileID: 1736089984}
 --- !u!114 &274070548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8112c714dc0f3c43823bcc6a595c960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10000
   isDead: 0
   knockbackDuration: 0.2
   knockbackPower: {x: 1.5, y: 2.5}
@@ -789,6 +771,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageMaterial: {fileID: 2100000, guid: f726fdc6bac27dd44b6f653cd5bd76fa, type: 2}
   onDamageVfxDuration: 0.2
+--- !u!114 &274070550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274070542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47448618e3965d8418bbab2a3c7c9f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 35
+  targetCheckRadius: 1
+  whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 256
+  targetCheck: {fileID: 1736089984}
+  counterRecovery: 0.25
 --- !u!1 &304930626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4811,7 +4812,7 @@ Transform:
   m_GameObject: {fileID: 817283597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.54, y: -3.58, z: 0}
+  m_LocalPosition: {x: 5.54, y: -4.67, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5181,7 +5182,7 @@ Transform:
   m_GameObject: {fileID: 1266080232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.42, y: 0, z: 0}
+  m_LocalPosition: {x: 1.42, y: -0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

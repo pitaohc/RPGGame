@@ -11,31 +11,27 @@ public class EntityCombat : MonoBehaviour
     [SerializeField] private LayerMask whatIsTarget;
     [SerializeField] private Transform targetCheck;
 
-    private Collider2D[] GetDetectedColliders()
+    protected Collider2D[] GetDetectedColliders()
     {
         return Physics2D.OverlapCircleAll(targetCheck.position, targetCheckRadius, whatIsTarget);
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
     }
 
-    public void PerformAttack()
+    public bool PerformAttack()
     {
-
+        bool detected = false;
         foreach (Collider2D target in GetDetectedColliders())
         {
-            //EntityHealth targetHealth = target.GetComponent<EntityHealth>();
-            //if (targetHealth)
-            //{
-            //    targetHealth.TakeDamage(damage, transform);
-            //}
             IDamageable damageable = target.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(damage, transform);
-            }
+            if (damageable == null) continue;
+
+            detected = true;
+            damageable.TakeDamage(damage, transform);
         }
+        return detected;
     }
 }

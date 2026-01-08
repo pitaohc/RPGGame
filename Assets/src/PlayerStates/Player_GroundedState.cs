@@ -10,7 +10,7 @@ public class Player_GroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (input.Player.Jump.WasPerformedThisFrame())
+        if (input.Player.Jump.WasPressedThisFrame())
         {
             stateMachine.ChangeState(player.jumpState);
         }
@@ -18,9 +18,13 @@ public class Player_GroundedState : PlayerState
         {
             stateMachine.ChangeState(player.fallState);
         }
-        if (input.Player.Attack.WasPerformedThisFrame())
+        if (input.Player.Attack.WasPressedThisFrame())
         {
             stateMachine.ChangeState(player.basicAttackState);
+        }
+        if (input.Player.CounterAttack.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.counterAttackState);
         }
     }
 }
