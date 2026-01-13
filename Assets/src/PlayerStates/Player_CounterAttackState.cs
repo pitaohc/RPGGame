@@ -8,7 +8,7 @@ public class Player_CounterAttackState : PlayerState
     public Player_CounterAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
         combat = player.GetComponent<PlayerCombat>();
-        Debug.Log(combat);
+        //Debug.Log(combat);
     }
 
     public override void Enter()
