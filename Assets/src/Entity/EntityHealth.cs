@@ -1,12 +1,12 @@
-using System;
-using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
+using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour, IDamageable
 {
     private EntityVFX entityVFX;
     private Entity entity;
+    private Slider healthbar;
     protected float curHealth = 100f;
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected bool isDead;
@@ -24,6 +24,8 @@ public class EntityHealth : MonoBehaviour, IDamageable
         curHealth = maxHealth;
         entityVFX = GetComponent<EntityVFX>();
         entity = GetComponent<Entity>();
+        healthbar = GetComponentInChildren<Slider>();
+        UpdateHealthBar();
     }
 
     public virtual void TakeDamage(float damage, Transform damageDealer)
@@ -44,6 +46,13 @@ public class EntityHealth : MonoBehaviour, IDamageable
         {
             Die();
         }
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (!healthbar) return;
+        healthbar.value = curHealth / maxHealth;
     }
 
     public void Die()
