@@ -1,13 +1,16 @@
 using System;
-using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
+using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour, IDamageable
 {
+    public event Action onHealthChanged;
+    public event Action onDie;
     private EntityVFX entityVFX;
     private Entity entity;
-    protected float curHealth = 100f;
+
+    protected float curHealth = 100.0f;
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected bool isDead;
 
@@ -24,6 +27,7 @@ public class EntityHealth : MonoBehaviour, IDamageable
         curHealth = maxHealth;
         entityVFX = GetComponent<EntityVFX>();
         entity = GetComponent<Entity>();
+        onHealthChanged?.Invoke();
     }
 
     public virtual void TakeDamage(float damage, Transform damageDealer)
@@ -40,16 +44,19 @@ public class EntityHealth : MonoBehaviour, IDamageable
     protected void ReduceHealth(float damage)
     {
         curHealth -= damage;
+        onHealthChanged?.Invoke();
         if (curHealth <= 0)
         {
             Die();
         }
+
     }
 
     public void Die()
     {
         isDead = true;
         entity?.EntityDeath();
+        onDie?.Invoke();
         Debug.Log("Entity dead");
     }
 
@@ -63,5 +70,10 @@ public class EntityHealth : MonoBehaviour, IDamageable
     private float CalculateDuration(float damage)
     {
         return (damage < maxHealth * heavyDamageThreshold) ? knockbackDuration : heavyKnockbackDuration;
+    }
+
+    public float GetHealthRate()
+    {
+        return curHealth / maxHealth;
     }
 }
