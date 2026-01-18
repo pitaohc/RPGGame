@@ -10,7 +10,7 @@ public class EntityHealth : MonoBehaviour, IDamageable
     private Entity entity;
     private EntityStat stat;
 
-    protected float curHealth = 100.0f;
+    protected float curHealth;
     // [SerializeField] protected float maxHealth = 100f;
     
     [SerializeField] protected bool isDead;
@@ -28,8 +28,8 @@ public class EntityHealth : MonoBehaviour, IDamageable
         entityVFX = GetComponent<EntityVFX>();
         stat = GetComponent<EntityStat>();
         entity = GetComponent<Entity>();
-        onHealthChanged?.Invoke();
         curHealth = stat.GetMaxHealth();
+        onHealthChanged?.Invoke();
     }
 
     public virtual void TakeDamage(float damage, Transform damageDealer)

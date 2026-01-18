@@ -15,8 +15,6 @@ public class UIMiniHealthBar : MonoBehaviour
 
         entity.onFlip += HandleFlip;
         entityHealth.onHealthChanged += HandleHealthUpdate;
-
-        HandleHealthUpdate();
     }
 
     private void OnDisable()
