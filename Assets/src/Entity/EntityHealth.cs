@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 
 public class EntityHealth : MonoBehaviour, IDamageable
@@ -10,7 +11,7 @@ public class EntityHealth : MonoBehaviour, IDamageable
     private Entity entity;
     private EntityStat stat;
 
-    protected float curHealth = 100.0f;
+    protected float curHealth;
     // [SerializeField] protected float maxHealth = 100f;
     
     [SerializeField] protected bool isDead;
@@ -28,21 +29,31 @@ public class EntityHealth : MonoBehaviour, IDamageable
         entityVFX = GetComponent<EntityVFX>();
         stat = GetComponent<EntityStat>();
         entity = GetComponent<Entity>();
-        onHealthChanged?.Invoke();
         curHealth = stat.GetMaxHealth();
+        onHealthChanged?.Invoke();
     }
 
-    public virtual void TakeDamage(float damage, Transform damageDealer)
+    public virtual bool TakeDamage(float damage, Transform damageDealer)
     {
-        if (isDead) return;
+        if (isDead) return false;
+
+        if (AttackEvaded())
+        {
+            Debug.Log($"{gameObject.name} evaded attack");
+            return false;
+        }
 
         Vector2 knockback = CalculateKnockback(damage, damageDealer);
         float duration = CalculateDuration(damage);
         entity?.ReceiveKnockback(knockback, duration);
         entityVFX?.PlayOnDamageVfx();
         ReduceHealth(damage);
+
+        return true;
     }
 
+    private bool AttackEvaded() => Random.Range(0, 100) < stat.GetEvasion();
+    
     protected void ReduceHealth(float damage)
     {
         curHealth -= damage;
