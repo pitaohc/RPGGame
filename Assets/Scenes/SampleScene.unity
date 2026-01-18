@@ -4954,10 +4954,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116aafd63f8f4d4db271606d82628c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitality:
-    baseValue: 7
   maxHealth:
-    baseValue: 0
+    baseValue: 100
+  major:
+    strength:
+      baseValue: 5
+    agility:
+      baseValue: 5
+    intelligence:
+      baseValue: 5
+    vitality:
+      baseValue: 5
+  offence:
+    damage:
+      baseValue: 0
+    critPower:
+      baseValue: 0
+    critChange:
+      baseValue: 0
+    fireDamage:
+      baseValue: 0
+    iceDamage:
+      baseValue: 0
+    lightingDamage:
+      baseValue: 0
+  defence:
+    armor:
+      baseValue: 0
+    evasion:
+      baseValue: 0
+    fireRes:
+      baseValue: 0
+    iceRes:
+      baseValue: 0
+    lightingRes:
+      baseValue: 0
 --- !u!1 &2051416800
 GameObject:
   m_ObjectHideFlags: 0
