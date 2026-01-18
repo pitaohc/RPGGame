@@ -16,11 +16,11 @@ public class Chest : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void TakeDamage(float damage, Transform damageDealer)
+    public bool TakeDamage(float damage, Transform damageDealer)
     {
         anim.SetBool(animIdChestOpen, true);
         rb.linearVelocity = knockback;
         rb.angularVelocity = Random.Range(-randomRotateRange, randomRotateRange);
-
+        return true;
     }
 }

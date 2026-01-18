@@ -35,8 +35,8 @@ public class EntityCombat : MonoBehaviour
             IDamageable damageable = target.GetComponent<IDamageable>();
             if (damageable == null) continue;
 
+            if (!damageable.TakeDamage(damage, transform)) continue;
             detected = true;
-            damageable.TakeDamage(damage, transform);
             vfx.CreateOnHitVfx(target.transform);
         }
         return detected;

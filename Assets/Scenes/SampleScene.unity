@@ -4660,13 +4660,13 @@ MonoBehaviour:
     baseValue: 100
   major:
     strength:
-      baseValue: 5
+      baseValue: 0
     agility:
-      baseValue: 5
+      baseValue: 0
     intelligence:
-      baseValue: 5
+      baseValue: 0
     vitality:
-      baseValue: 5
+      baseValue: 0
   offence:
     damage:
       baseValue: 0
@@ -5034,7 +5034,7 @@ MonoBehaviour:
     armor:
       baseValue: 0
     evasion:
-      baseValue: 0
+      baseValue: 5
     fireRes:
       baseValue: 0
     iceRes:
