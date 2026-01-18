@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
-using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour, IDamageable
 {
@@ -9,9 +8,11 @@ public class EntityHealth : MonoBehaviour, IDamageable
     public event Action onDie;
     private EntityVFX entityVFX;
     private Entity entity;
+    private EntityStat stat;
 
     protected float curHealth = 100.0f;
-    [SerializeField] protected float maxHealth = 100f;
+    // [SerializeField] protected float maxHealth = 100f;
+    
     [SerializeField] protected bool isDead;
 
     [Header("On Damage Knockback")]
@@ -24,10 +25,11 @@ public class EntityHealth : MonoBehaviour, IDamageable
     [SerializeField] protected Vector2 heavyKnockbackPower = new(7, 7);
     protected virtual void Awake()
     {
-        curHealth = maxHealth;
         entityVFX = GetComponent<EntityVFX>();
+        stat = GetComponent<EntityStat>();
         entity = GetComponent<Entity>();
         onHealthChanged?.Invoke();
+        curHealth = stat.GetMaxHealth();
     }
 
     public virtual void TakeDamage(float damage, Transform damageDealer)
@@ -63,17 +65,17 @@ public class EntityHealth : MonoBehaviour, IDamageable
     private Vector2 CalculateKnockback(float damage, Transform damageDealer)
     {
         int direction = transform.position.x > damageDealer.position.x ? 1 : -1;
-        Vector2 knockback = (damage < maxHealth * heavyDamageThreshold) ? knockbackPower : heavyKnockbackPower;
+        Vector2 knockback = (damage < stat.GetMaxHealth() * heavyDamageThreshold) ? knockbackPower : heavyKnockbackPower;
         return knockback * new Vector2(direction, 1);
     }
 
     private float CalculateDuration(float damage)
     {
-        return (damage < maxHealth * heavyDamageThreshold) ? knockbackDuration : heavyKnockbackDuration;
+        return (damage < stat.GetMaxHealth() * heavyDamageThreshold) ? knockbackDuration : heavyKnockbackDuration;
     }
 
     public float GetHealthRate()
     {
-        return curHealth / maxHealth;
+        return curHealth / stat.GetMaxHealth();
     }
 }
