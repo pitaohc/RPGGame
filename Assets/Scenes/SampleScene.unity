@@ -5098,8 +5098,24 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: offence.iceDamage.baseValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: major.intelligence.baseValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
       propertyPath: offence.critChange.baseValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: offence.fireDamage.baseValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: offence.lightingDamage.baseValue
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5319399018382290092, guid: c3f068fd23fc554489276e843887865b, type: 3}
       propertyPath: m_AnchorMax.x

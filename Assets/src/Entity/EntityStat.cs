@@ -73,22 +73,58 @@ public class EntityStat : MonoBehaviour
         return baseReduction / 100;
     }
 
-    public float GetElementDamage()
+    public float GetElementDamage(out ElementType elementType)
     {
         float fireDamage = offence.fireDamage.GetValue();
         float iceDamage = offence.iceDamage.GetValue();
         float lightingDamage = offence.lightingDamage.GetValue();
         
         float elementDamageMax = 0;
-        elementDamageMax = Mathf.Max(elementDamageMax, fireDamage);
-        elementDamageMax = Mathf.Max(elementDamageMax, iceDamage);
-        elementDamageMax = Mathf.Max(elementDamageMax, lightingDamage);
-
+        elementType = ElementType.None;
+        
+        if (fireDamage > elementDamageMax)
+        {
+            elementDamageMax = fireDamage;
+            elementType = ElementType.Fire;
+        }
+        if (lightingDamage > elementDamageMax)
+        {
+            elementDamageMax = lightingDamage;
+            elementType = ElementType.Lightning;
+        }
+        if (iceDamage > elementDamageMax)
+        {
+            elementDamageMax = iceDamage;
+            elementType = ElementType.Ice;
+        }
+        
         float baseDamage = (fireDamage + iceDamage + lightingDamage) * 0.5f + elementDamageMax * 0.5f;
-        if (baseDamage < Mathf.Epsilon) return 0;
 
         float bonusDamage = major.agility.GetValue() * 1.0f;
-        float totalDamage = baseDamage + bonusDamage;
+        float totalDamage = baseDamage + (baseDamage > Mathf.Epsilon? bonusDamage: 0);
+        
         return totalDamage;
+    }
+
+    public float GetElementalResistance(ElementType element)
+    {
+        float baseResistance = 0;
+        if (element == ElementType.Fire)
+        {
+            baseResistance = defence.fireRes.GetValue();
+        }
+        else if (element == ElementType.Ice)
+        {
+            baseResistance = defence.iceRes.GetValue();
+        }
+        else if (element == ElementType.Lightning)
+        {
+            baseResistance = defence.lightingRes.GetValue();
+        }
+        float bonusResistance = major.intelligence.GetValue() * 0.5f;
+        float finalResistance = baseResistance + bonusResistance;
+        const float resistanceCut = 75;
+        finalResistance = Mathf.Clamp(finalResistance, 0, resistanceCut) / 100;
+        return finalResistance;
     }
 }
