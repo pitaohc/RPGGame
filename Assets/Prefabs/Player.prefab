@@ -344,6 +344,8 @@ MonoBehaviour:
       baseValue: 35
     critPower:
       baseValue: 200
+    armorReduction:
+      baseValue: 10
     critChange:
       baseValue: 50
     fireDamage:
@@ -354,7 +356,7 @@ MonoBehaviour:
       baseValue: 0
   defence:
     armor:
-      baseValue: 0
+      baseValue: 10
     evasion:
       baseValue: 5
     fireRes:
