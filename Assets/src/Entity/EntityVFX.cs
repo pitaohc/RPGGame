@@ -6,16 +6,23 @@ public class EntityVFX : MonoBehaviour
 {
     private SpriteRenderer sr;
     private Coroutine onDamageVfxCoroutine;
-    [Header("On Taking Damage VFX")]
-    [SerializeField] private Material onDamageMaterial;
+    private Entity entity;
+
+    [Header("On Taking Damage VFX")] [SerializeField]
+    private Material onDamageMaterial;
+
     [SerializeField] private float onDamageVfxDuration = .2f;
 
-    [Header("On Doing Damage VFX")]
-    [SerializeField] private GameObject hitVfx;
+    [Header("On Doing Damage VFX")] [SerializeField]
+    private GameObject hitVfx;
+
+    [SerializeField] private GameObject critHitVfx;
     [SerializeField] private Color hitVfxColor = Color.white;
+
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
+        entity = GetComponent<Entity>();
     }
 
     public void PlayOnDamageVfx()
@@ -24,6 +31,7 @@ public class EntityVFX : MonoBehaviour
         {
             StopCoroutine(onDamageVfxCoroutine);
         }
+
         onDamageVfxCoroutine = StartCoroutine(OnDamageVfxCo());
     }
 
@@ -35,9 +43,11 @@ public class EntityVFX : MonoBehaviour
         sr.material = originalMaterial;
     }
 
-    public void CreateOnHitVfx(Transform target)
+    public void CreateOnHitVfx(Transform target, bool isCrit)
     {
-        GameObject vfx = Instantiate(hitVfx, target.position, Quaternion.identity);
+        GameObject go = isCrit ? critHitVfx : hitVfx;
+        GameObject vfx = Instantiate(go, target.position, Quaternion.identity);
         vfx.GetComponentInChildren<SpriteRenderer>().color = hitVfxColor;
+        vfx.transform.Rotate(0, entity.IsFaceRight() ? 0 : 180, 0);
     }
 }

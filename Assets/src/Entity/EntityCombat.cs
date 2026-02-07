@@ -4,7 +4,7 @@ using UnityEngine;
 public class EntityCombat : MonoBehaviour
 {
     private EntityVFX vfx;
-    public float damage = 10;
+    private EntityStat stat;
     [Header("Target Detection")]
     [SerializeField]
     private float targetCheckRadius = 1.0f;
@@ -15,6 +15,7 @@ public class EntityCombat : MonoBehaviour
     private void Awake()
     {
         vfx = GetComponent<EntityVFX>();
+        stat = GetComponent<EntityStat>();
     }
 
     protected Collider2D[] GetDetectedColliders()
@@ -34,10 +35,10 @@ public class EntityCombat : MonoBehaviour
         {
             IDamageable damageable = target.GetComponent<IDamageable>();
             if (damageable == null) continue;
-
-            if (!damageable.TakeDamage(damage, transform)) continue;
+            bool isCrit;
+            if (!damageable.TakeDamage(stat.GetPhysicalDamage(out isCrit), transform)) continue;
             detected = true;
-            vfx.CreateOnHitVfx(target.transform);
+            vfx.CreateOnHitVfx(target.transform,isCrit);
         }
         return detected;
     }
