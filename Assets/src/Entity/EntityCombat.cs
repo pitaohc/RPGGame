@@ -36,7 +36,7 @@ public class EntityCombat : MonoBehaviour
             IDamageable damageable = target.GetComponent<IDamageable>();
             if (damageable == null) continue;
             bool isCrit;
-            if (!damageable.TakeDamage(stat.GetPhysicalDamage(out isCrit), transform)) continue;
+            if (!damageable.TakeDamage(stat.GetPhysicalDamage(out isCrit), stat.GetElementDamage(),transform)) continue;
             detected = true;
             vfx.CreateOnHitVfx(target.transform,isCrit);
         }

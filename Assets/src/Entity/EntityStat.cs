@@ -72,4 +72,23 @@ public class EntityStat : MonoBehaviour
         float baseReduction = offence.armorReduction.GetValue();
         return baseReduction / 100;
     }
+
+    public float GetElementDamage()
+    {
+        float fireDamage = offence.fireDamage.GetValue();
+        float iceDamage = offence.iceDamage.GetValue();
+        float lightingDamage = offence.lightingDamage.GetValue();
+        
+        float elementDamageMax = 0;
+        elementDamageMax = Mathf.Max(elementDamageMax, fireDamage);
+        elementDamageMax = Mathf.Max(elementDamageMax, iceDamage);
+        elementDamageMax = Mathf.Max(elementDamageMax, lightingDamage);
+
+        float baseDamage = (fireDamage + iceDamage + lightingDamage) * 0.5f + elementDamageMax * 0.5f;
+        if (baseDamage < Mathf.Epsilon) return 0;
+
+        float bonusDamage = major.agility.GetValue() * 1.0f;
+        float totalDamage = baseDamage + bonusDamage;
+        return totalDamage;
+    }
 }
