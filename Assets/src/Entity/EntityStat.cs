@@ -52,4 +52,24 @@ public class EntityStat : MonoBehaviour
         isCrit = critted;
         return finalDamage;
     }
+
+    public float GetArmorMitigation()
+    {
+        // TODO GetArmorMitigation
+        float baseArmor = defence.armor.GetValue();
+        float bonusArmor = major.vitality.GetValue() * 1.0f;
+        float totalArmor = baseArmor + bonusArmor;
+
+        float mitigation = totalArmor / (totalArmor + 100);
+        const float mitigationCut = 85;
+        mitigation = Mathf.Clamp(mitigation, 0, mitigationCut);
+        return mitigation;
+    }
+
+    public float GetArmorReduction()
+    {
+        // 100 -> 1
+        float baseReduction = offence.armorReduction.GetValue();
+        return baseReduction / 100;
+    }
 }

@@ -43,11 +43,22 @@ public class EntityHealth : MonoBehaviour, IDamageable
             return false;
         }
 
-        Vector2 knockback = CalculateKnockback(damage, damageDealer);
-        float duration = CalculateDuration(damage);
+        EntityStat dealerStat = damageDealer.GetComponent<EntityStat>();
+        float reduction = dealerStat.GetArmorReduction();
+        float reductionMultiplier = Mathf.Clamp01(1 - reduction); // 计算破甲比例，获得护甲有效倍率
+        
+        float mitigation = stat.GetArmorMitigation();
+        float effectMitigation = mitigation * reductionMultiplier; // 获得真实有效的护甲值
+        float finalDamage = damage * (1 - effectMitigation); // 计算伤害的生效只
+        
+        
+        // Debug.Log($"{gameObject.name} take {damage} damage, mitigation: {mitigation}, final damage {finalDamage}");
+        Vector2 knockback = CalculateKnockback(finalDamage, damageDealer);
+        float duration = CalculateDuration(finalDamage);
+
         entity?.ReceiveKnockback(knockback, duration);
         entityVFX?.PlayOnDamageVfx();
-        ReduceHealth(damage);
+        ReduceHealth(finalDamage);
 
         return true;
     }
