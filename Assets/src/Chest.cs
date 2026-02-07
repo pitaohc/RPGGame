@@ -16,7 +16,7 @@ public class Chest : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public bool TakeDamage(float damage,float elementDamage, Transform damageDealer)
+    public bool TakeDamage(float damage,float elementDamage,ElementType elementType, Transform damageDealer)
     {
         anim.SetBool(animIdChestOpen, true);
         rb.linearVelocity = knockback;

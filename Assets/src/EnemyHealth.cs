@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyHealth : EntityHealth
@@ -11,9 +10,9 @@ public class EnemyHealth : EntityHealth
         enemy = GetComponent<Enemy>();
     }
 
-    public override bool TakeDamage(float damage,float elementDamage, Transform damageDealer)
+    public override bool TakeDamage(float damage, float elementDamage, ElementType elementType, Transform damageDealer)
     {
-        if (base.TakeDamage(damage, elementDamage, damageDealer) == false) return false;
+        if (base.TakeDamage(damage, elementDamage, elementType, damageDealer) == false) return false;
         if (!isDead && damageDealer.GetComponent<Player>() != null)
         {
             enemy.TryEnterBattleState(damageDealer);
