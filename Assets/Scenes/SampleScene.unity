@@ -4639,58 +4639,6 @@ Transform:
   - {fileID: 53725969}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &1216064212 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8792378976897679594, guid: c3f068fd23fc554489276e843887865b, type: 3}
-  m_PrefabInstance: {fileID: 6177055073872463458}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1216064220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216064212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 116aafd63f8f4d4db271606d82628c50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth:
-    baseValue: 100
-  major:
-    strength:
-      baseValue: 0
-    agility:
-      baseValue: 0
-    intelligence:
-      baseValue: 0
-    vitality:
-      baseValue: 0
-  offence:
-    damage:
-      baseValue: 0
-    critPower:
-      baseValue: 0
-    critChange:
-      baseValue: 0
-    fireDamage:
-      baseValue: 0
-    iceDamage:
-      baseValue: 0
-    lightingDamage:
-      baseValue: 0
-  defence:
-    armor:
-      baseValue: 0
-    evasion:
-      baseValue: 0
-    fireRes:
-      baseValue: 0
-    iceRes:
-      baseValue: 0
-    lightingRes:
-      baseValue: 0
 --- !u!1 &1378970265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4989,58 +4937,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2010603199 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3161717758721691042, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
-  m_PrefabInstance: {fileID: 4302124027181873466}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2010603200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010603199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 116aafd63f8f4d4db271606d82628c50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth:
-    baseValue: 100
-  major:
-    strength:
-      baseValue: 5
-    agility:
-      baseValue: 5
-    intelligence:
-      baseValue: 5
-    vitality:
-      baseValue: 5
-  offence:
-    damage:
-      baseValue: 0
-    critPower:
-      baseValue: 0
-    critChange:
-      baseValue: 0
-    fireDamage:
-      baseValue: 0
-    iceDamage:
-      baseValue: 0
-    lightingDamage:
-      baseValue: 0
-  defence:
-    armor:
-      baseValue: 0
-    evasion:
-      baseValue: 5
-    fireRes:
-      baseValue: 0
-    iceRes:
-      baseValue: 0
-    lightingRes:
-      baseValue: 0
 --- !u!1 &2051416800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,17 +5028,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2794159222402306081, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
-      propertyPath: hitVfxColor.b
-      value: 0.14901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 2794159222402306081, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
-      propertyPath: hitVfxColor.g
-      value: 0.1254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 2794159222402306081, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
-      propertyPath: hitVfxColor.r
-      value: 0.8901961
+    - target: {fileID: 651163115155964484, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
+      propertyPath: maxHealth.baseValue
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3161717758721691042, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
       propertyPath: m_Name
@@ -5191,10 +5079,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3161717758721691042, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2010603200}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fa921d96ed01044fa9280129f0bd2c9, type: 3}
 --- !u!1001 &6177055073872463458
 PrefabInstance:
@@ -5204,6 +5089,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: offence.damage.baseValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: offence.critPower.baseValue
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: offence.critChange.baseValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5319399018382290092, guid: c3f068fd23fc554489276e843887865b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5256,17 +5153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 8792378976897679594, guid: c3f068fd23fc554489276e843887865b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8792378976897679594, guid: c3f068fd23fc554489276e843887865b, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1216064220}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f068fd23fc554489276e843887865b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

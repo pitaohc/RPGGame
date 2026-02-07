@@ -69,7 +69,7 @@ public class Enemy : Entity
     public RaycastHit2D PlayerDetection()
     {
         RaycastHit2D result = Physics2D.Raycast(playerCheck.position, faceDirection * Vector2.right, playerCheckDistance, whatIsPlayer | whatIsGround);
-        if (result.collider == null || result.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
+        if (result.collider is null || result.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             return default;
         }

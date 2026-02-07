@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 8055021686233065030}
   - component: {fileID: 384221519744698687}
   - component: {fileID: 1829125747741017617}
+  - component: {fileID: 542558355487530696}
   - component: {fileID: 458472652195466231}
   - component: {fileID: 4530386223510183104}
   - component: {fileID: 795550006224053793}
@@ -830,12 +831,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2239998396c49ce48b94cb1b3bb6e676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   targetCheckRadius: 1
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 128
   targetCheck: {fileID: 8408307892905479574}
+--- !u!114 &542558355487530696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792378976897679594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116aafd63f8f4d4db271606d82628c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth:
+    baseValue: 100
+  major:
+    strength:
+      baseValue: 0
+    agility:
+      baseValue: 0
+    intelligence:
+      baseValue: 0
+    vitality:
+      baseValue: 0
+  offence:
+    damage:
+      baseValue: 0
+    critPower:
+      baseValue: 0
+    critChange:
+      baseValue: 0
+    fireDamage:
+      baseValue: 0
+    iceDamage:
+      baseValue: 0
+    lightingDamage:
+      baseValue: 0
+  defence:
+    armor:
+      baseValue: 0
+    evasion:
+      baseValue: 0
+    fireRes:
+      baseValue: 0
+    iceRes:
+      baseValue: 0
+    lightingRes:
+      baseValue: 0
 --- !u!114 &458472652195466231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,7 +895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b628165fb76d084d9e4803157e8bd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   isDead: 0
   knockbackDuration: 0.2
   knockbackPower: {x: 1.5, y: 2.5}
@@ -934,5 +980,6 @@ MonoBehaviour:
   onDamageMaterial: {fileID: 2100000, guid: f726fdc6bac27dd44b6f653cd5bd76fa, type: 2}
   onDamageVfxDuration: 0.2
   hitVfx: {fileID: 5510943374969330661, guid: d56d90764be23ab45be68dfdc213db13, type: 3}
+  critHitVfx: {fileID: 9205762179280580395, guid: edcd4e85243dc3743be285c57da554f1, type: 3}
   hitVfxColor: {r: 0.8901961, g: 0.1254902, b: 0.14901961, a: 1}
   attackAlert: {fileID: 5059542271030918362}

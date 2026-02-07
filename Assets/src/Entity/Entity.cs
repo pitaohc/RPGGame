@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -9,8 +8,7 @@ public class Entity : MonoBehaviour
     public StateMachine stateMachine { get; private set; }
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
-
-    private bool faceToRight = true;
+    
 
     public int faceDirection { get; private set; } = 1;// face to right = 1, face to left = -1
 
@@ -75,7 +73,6 @@ public class Entity : MonoBehaviour
 
     public void Flip()
     {
-        faceToRight = !faceToRight;
         faceDirection = -faceDirection;
         transform.Rotate(0f, 180f, 0f);
         onFlip?.Invoke();
@@ -142,5 +139,10 @@ public class Entity : MonoBehaviour
     public virtual void EntityDeath()
     {
 
+    }
+
+    public bool IsFaceRight()
+    {
+        return faceDirection > 0;
     }
 }
