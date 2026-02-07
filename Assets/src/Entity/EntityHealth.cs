@@ -33,7 +33,7 @@ public class EntityHealth : MonoBehaviour, IDamageable
         onHealthChanged?.Invoke();
     }
 
-    public virtual bool TakeDamage(float damage, Transform damageDealer)
+    public virtual bool TakeDamage(float damage, float elementDamage, Transform damageDealer)
     {
         if (isDead) return false;
 
@@ -51,11 +51,11 @@ public class EntityHealth : MonoBehaviour, IDamageable
         float effectMitigation = mitigation * reductionMultiplier; // 获得真实有效的护甲值
         float finalDamage = damage * (1 - effectMitigation); // 计算伤害的生效只
         
-        
+        // TODO: element damage has not applied.
         // Debug.Log($"{gameObject.name} take {damage} damage, mitigation: {mitigation}, final damage {finalDamage}");
         Vector2 knockback = CalculateKnockback(finalDamage, damageDealer);
         float duration = CalculateDuration(finalDamage);
-
+        // Debug.Log($"{gameObject.name} damage: {finalDamage}, element Damage: {elementDamage}");
         entity?.ReceiveKnockback(knockback, duration);
         entityVFX?.PlayOnDamageVfx();
         ReduceHealth(finalDamage);
