@@ -8,6 +8,13 @@ public class EntityVFX : MonoBehaviour
     private Coroutine onDamageVfxCoroutine;
     private Entity entity;
 
+    [Header("Element Colors")] [SerializeField]
+    private Color chillVfxColor = Color.cyan;
+
+    [SerializeField] private Color fireVfxColor = Color.red;
+    [SerializeField] private Color electrifyVfxColor = Color.yellow;
+    private Color originalColor = Color.white;
+
     [Header("On Taking Damage VFX")] [SerializeField]
     private Material onDamageMaterial;
 
@@ -23,6 +30,7 @@ public class EntityVFX : MonoBehaviour
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         entity = GetComponent<Entity>();
+        originalColor = hitVfxColor;
     }
 
     public void PlayOnDamageVfx()
@@ -49,5 +57,25 @@ public class EntityVFX : MonoBehaviour
         GameObject vfx = Instantiate(go, target.position, Quaternion.identity);
         vfx.GetComponentInChildren<SpriteRenderer>().color = hitVfxColor;
         vfx.transform.Rotate(0, entity.IsFaceRight() ? 0 : 180, 0);
+    }
+
+    public void UpdateOnHitColor(ElementType elementType)
+    {
+        if (elementType == ElementType.Fire)
+        {
+            hitVfxColor = fireVfxColor;
+        }
+        else if (elementType == ElementType.Ice)
+        {
+            hitVfxColor = chillVfxColor;
+        }
+        else if (elementType == ElementType.Lightning)
+        {
+            hitVfxColor = electrifyVfxColor;
+        }
+        else
+        {
+            hitVfxColor = originalColor;
+        }
     }
 }

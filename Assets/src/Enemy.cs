@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -107,5 +108,24 @@ public class Enemy : Entity
     private void OnPlayerDeadHandle()
     {
         stateMachine.ChangeState(idleState);
+    }
+
+    protected override IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
+    {
+        float moveSpeedOriginal = moveSpeed;
+        float battleMoveVelocityOriginal = battleMoveVelocity;
+        float animSpeedOriginal = anim.speed;
+
+        float speedMultiplier = 1 - slowMultiplier;
+        moveSpeed *= speedMultiplier;
+        battleMoveVelocity *= speedMultiplier;
+        anim.speed *= speedMultiplier;
+        Debug.Log($"变慢 {speedMultiplier} {moveSpeed} {moveSpeedOriginal}");
+        yield return new WaitForSeconds(duration);
+        
+        moveSpeed = moveSpeedOriginal;
+        battleMoveVelocity = battleMoveVelocityOriginal;
+        anim.speed = animSpeedOriginal;
+        Debug.Log($"恢复 {moveSpeed}");
     }
 }
