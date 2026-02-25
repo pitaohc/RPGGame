@@ -78,4 +78,37 @@ public class EntityVFX : MonoBehaviour
             hitVfxColor = originalColor;
         }
     }
+
+    public void PlayStatusVfx(float duration, ElementType elementType)
+    {
+        Color color = hitVfxColor;
+        if (elementType == ElementType.Ice)
+        {
+            color = chillVfxColor;
+        }
+        // Debug.Log($"PlayStatusVfx: duration: {duration} color {color}");
+
+        StartCoroutine(PlayStatusVfxCo(duration, color));
+    }
+
+    private IEnumerator PlayStatusVfxCo(float duration, Color effectColor)
+    {
+        float twinkInterval = .2f;
+        float timer = 0f;
+        float colorDiff = 0.05f;
+        Color highlightColor = (1 + colorDiff) * effectColor;
+        Color darkColor = (1 - colorDiff) * effectColor;
+        bool toggle = true;
+        // Debug.Log("PlayStatusVfxCo");
+        while (timer <= duration)
+        {
+            sr.color = toggle ? highlightColor : darkColor;
+            // Debug.Log($"timer: {timer}, color {(toggle ? highlightColor : darkColor)}");
+            toggle = !toggle;
+            timer += twinkInterval;
+            yield return new WaitForSeconds(twinkInterval);
+        }
+
+        sr.color = Color.white;
+    }
 }

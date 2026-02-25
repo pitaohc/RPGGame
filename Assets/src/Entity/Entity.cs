@@ -151,7 +151,6 @@ public class Entity : MonoBehaviour
     {
         if (slowDownEntityCo != null)
         {
-            Debug.Log("co is not null");
             StopCoroutine(slowDownEntityCo);
         }
         

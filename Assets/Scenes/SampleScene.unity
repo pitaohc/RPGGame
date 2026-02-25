@@ -5113,6 +5113,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 384221519744698687, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: attackDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 384221519744698687, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: playerCheckDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
       propertyPath: maxHealth.baseValue
       value: 1000
@@ -5144,6 +5152,22 @@ PrefabInstance:
     - target: {fileID: 542558355487530696, guid: c3f068fd23fc554489276e843887865b, type: 3}
       propertyPath: offence.lightingDamage.baseValue
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829125747741017617, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: chillSlowMultiplier
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026546246820001418, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: hitVfxColor.b
+      value: 0.8701597
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026546246820001418, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: hitVfxColor.g
+      value: 0.8660377
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026546246820001418, guid: c3f068fd23fc554489276e843887865b, type: 3}
+      propertyPath: hitVfxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5319399018382290092, guid: c3f068fd23fc554489276e843887865b, type: 3}
       propertyPath: m_AnchorMax.x

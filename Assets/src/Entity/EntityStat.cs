@@ -46,9 +46,9 @@ public class EntityStat : MonoBehaviour
         bool critted = Random.Range(0, 100) < totalCritChance;
         float finalDamage = totalBaseDamage * (critted ? totalCritPower : 1);
 
-        Debug.LogFormat(
-            "totalBaseDamage={0:F2}, totalCritChance={1:F2}, totalCritPower={2:F2}, critted={3}, finalDamage={4:F2}",
-            totalBaseDamage, totalCritChance, totalCritPower, critted, finalDamage);
+        // Debug.LogFormat(
+        //     "totalBaseDamage={0:F2}, totalCritChance={1:F2}, totalCritPower={2:F2}, critted={3}, finalDamage={4:F2}",
+        //     totalBaseDamage, totalCritChance, totalCritPower, critted, finalDamage);
         isCrit = critted;
         return finalDamage;
     }

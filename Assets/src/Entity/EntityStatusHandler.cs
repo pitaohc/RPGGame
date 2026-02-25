@@ -7,9 +7,14 @@ public class EntityStatusHandler: MonoBehaviour
 {
     private ElementType elementTypeCur;
     private Entity entity;
+    private EntityVFX entityVfx;
+    private EntityStat stat;
+    private Coroutine chilledEffectCo;
     private void Awake()
     {
         entity = GetComponent<Entity>();
+        entityVfx = GetComponent<EntityVFX>();
+        stat = GetComponent<EntityStat>();
     }
 
     public bool CanBeApplied(ElementType elementType)
@@ -19,12 +24,26 @@ public class EntityStatusHandler: MonoBehaviour
 
     public void ApplyChillEffect(float duration, float slowMultiplier)
     {
-        Debug.Log($"ApplyChillEffect duration {duration} slowMultiplier {slowMultiplier}");
-        
-        // elementTypeCur = ElementType.Ice;
-        
+        duration *= 1 - stat.GetElementalResistance(ElementType.Ice);
         entity.SlowDownEntity(duration, slowMultiplier);
+        ChilledEffect(duration);
     }
 
-
+    private void ChilledEffect(float duration)
+    {
+        if (chilledEffectCo != null)
+        {
+            StopCoroutine(chilledEffectCo);
+        }
+        chilledEffectCo = StartCoroutine(ChilledEffectCo(duration));
+    }
+    
+    private IEnumerator ChilledEffectCo(float duration)
+    {
+        elementTypeCur = ElementType.Ice;
+        entityVfx?.PlayStatusVfx(duration,ElementType.Ice);
+        
+        yield return new WaitForSeconds(duration);
+        elementTypeCur = ElementType.None;
+    }
 }

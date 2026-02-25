@@ -120,12 +120,10 @@ public class Enemy : Entity
         moveSpeed *= speedMultiplier;
         battleMoveVelocity *= speedMultiplier;
         anim.speed *= speedMultiplier;
-        Debug.Log($"变慢 {speedMultiplier} {moveSpeed} {moveSpeedOriginal}");
+
         yield return new WaitForSeconds(duration);
-        
         moveSpeed = moveSpeedOriginal;
         battleMoveVelocity = battleMoveVelocityOriginal;
         anim.speed = animSpeedOriginal;
-        Debug.Log($"恢复 {moveSpeed}");
     }
 }
