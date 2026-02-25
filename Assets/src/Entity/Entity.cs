@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
 
     private bool isKnocked;
     private Coroutine knockbackCo;
+    private Coroutine slowDownEntityCo;
 
 
     protected virtual void Awake()
@@ -144,5 +145,20 @@ public class Entity : MonoBehaviour
     public bool IsFaceRight()
     {
         return faceDirection > 0;
+    }
+
+    public void SlowDownEntity(float duration, float slowMultiplier)
+    {
+        if (slowDownEntityCo != null)
+        {
+            StopCoroutine(slowDownEntityCo);
+        }
+        
+        slowDownEntityCo = StartCoroutine(SlowDownEntityCo(duration, slowMultiplier));
+    }
+
+    protected virtual IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
+    {
+        yield return null;
     }
 }

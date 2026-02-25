@@ -8,6 +8,13 @@ public class EntityVFX : MonoBehaviour
     private Coroutine onDamageVfxCoroutine;
     private Entity entity;
 
+    [Header("Element Colors")] [SerializeField]
+    private Color chillVfxColor = Color.cyan;
+
+    [SerializeField] private Color fireVfxColor = Color.red;
+    [SerializeField] private Color electrifyVfxColor = Color.yellow;
+    private Color originalColor = Color.white;
+
     [Header("On Taking Damage VFX")] [SerializeField]
     private Material onDamageMaterial;
 
@@ -23,6 +30,7 @@ public class EntityVFX : MonoBehaviour
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         entity = GetComponent<Entity>();
+        originalColor = hitVfxColor;
     }
 
     public void PlayOnDamageVfx()
@@ -49,5 +57,58 @@ public class EntityVFX : MonoBehaviour
         GameObject vfx = Instantiate(go, target.position, Quaternion.identity);
         vfx.GetComponentInChildren<SpriteRenderer>().color = hitVfxColor;
         vfx.transform.Rotate(0, entity.IsFaceRight() ? 0 : 180, 0);
+    }
+
+    public void UpdateOnHitColor(ElementType elementType)
+    {
+        if (elementType == ElementType.Fire)
+        {
+            hitVfxColor = fireVfxColor;
+        }
+        else if (elementType == ElementType.Ice)
+        {
+            hitVfxColor = chillVfxColor;
+        }
+        else if (elementType == ElementType.Lightning)
+        {
+            hitVfxColor = electrifyVfxColor;
+        }
+        else
+        {
+            hitVfxColor = originalColor;
+        }
+    }
+
+    public void PlayStatusVfx(float duration, ElementType elementType)
+    {
+        Color color = hitVfxColor;
+        if (elementType == ElementType.Ice)
+        {
+            color = chillVfxColor;
+        }
+        // Debug.Log($"PlayStatusVfx: duration: {duration} color {color}");
+
+        StartCoroutine(PlayStatusVfxCo(duration, color));
+    }
+
+    private IEnumerator PlayStatusVfxCo(float duration, Color effectColor)
+    {
+        float twinkInterval = .2f;
+        float timer = 0f;
+        float colorDiff = 0.05f;
+        Color highlightColor = (1 + colorDiff) * effectColor;
+        Color darkColor = (1 - colorDiff) * effectColor;
+        bool toggle = true;
+        // Debug.Log("PlayStatusVfxCo");
+        while (timer <= duration)
+        {
+            sr.color = toggle ? highlightColor : darkColor;
+            // Debug.Log($"timer: {timer}, color {(toggle ? highlightColor : darkColor)}");
+            toggle = !toggle;
+            timer += twinkInterval;
+            yield return new WaitForSeconds(twinkInterval);
+        }
+
+        sr.color = Color.white;
     }
 }
